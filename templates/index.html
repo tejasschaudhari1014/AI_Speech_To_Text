@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>AI Speech To Text</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>AI Speech-to-Text</h1>
+
+        <p>
+            Convert speech into text and perform
+            intelligent NLP analysis.
+        </p>
+
+    </div>
+
+    <div class="upload-card">
+
+        <h2>Upload Audio</h2>
+
+        <form
+            action="{{ url_for('process_audio') }}"
+            method="POST"
+            enctype="multipart/form-data">
+
+           <input
+                type="file"
+                name="audio"
+                id="audio"
+                accept=".mp3,.mp4,.wav,.m4a,.flac,.ogg"
+                required
+        >
+
+            <p id="file-name">
+                 Supported formats:MP3, MP4, WAV, M4A, FLAC, OGG
+            </p>
+
+            <button type="submit">
+                Convert & Analyze
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <h3>🎤 Speech Recognition</h3>
+            <p>Convert audio into text using Whisper AI.</p>
+        </div>
+
+        <div class="feature">
+            <h3>🧠 NLP Analysis</h3>
+            <p>Analyze words, sentences and keywords.</p>
+        </div>
+
+        <div class="feature">
+            <h3>📝 Summarization</h3>
+            <p>Generate an automatic text summary.</p>
+        </div>
+
+        <div class="feature">
+            <h3>😊 Sentiment</h3>
+            <p>Identify positive, negative or neutral sentiment.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script
+src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Analysis Result</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Analysis Result</h1>
+
+<div class="card">
+
+<h2>Audio File</h2>
+
+<p>{{ filename }}</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎤 Transcript</h2>
+
+<div class="transcript">
+
+{{ transcript }}
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📝 Summary</h2>
+
+<p>
+{{ summary }}
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🧠 NLP Analysis</h2>
+
+<div class="stats">
+
+<div>
+<strong>{{ nlp.word_count }}</strong>
+<br>
+Words
+</div>
+
+<div>
+<strong>{{ nlp.sentence_count }}</strong>
+<br>
+Sentences
+</div>
+
+<div>
+<strong>{{ nlp.unique_words }}</strong>
+<br>
+Unique Words
+</div>
+
+<div>
+<strong>{{ nlp.character_count }}</strong>
+<br>
+Characters
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>😊 Sentiment</h2>
+
+<h3>{{ sentiment.label }}</h3>
+
+<p>
+Polarity: {{ sentiment.polarity }}
+</p>
+
+<p>
+Subjectivity: {{ sentiment.subjectivity }}
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔑 Keywords</h2>
+
+<ul>
+
+{% for word, count in nlp.keywords %}
+
+<li>
+{{ word }} — {{ count }}
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+
+<div class="actions">
+
+<a
+href="{{ url_for('report',
+filename=report_filename) }}"
+target="_blank">
+
+View Full Report
+
+</a>
+
+<a href="{{ url_for('index') }}">
+
+Process Another Audio
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

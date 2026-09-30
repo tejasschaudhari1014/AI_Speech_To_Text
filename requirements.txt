@@ -1,0 +1,12 @@
+Flask
+openai-whisper
+torch
+torchaudio
+numpy
+pandas
+textblob
+nltk
+scipy
+soundfile
+imageio-ffmpeg
+requests

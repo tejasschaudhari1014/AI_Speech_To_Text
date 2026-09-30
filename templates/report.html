@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Speech Analysis Report</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Speech Analysis Report</h1>
+
+<div class="card">
+
+<h2>Transcript</h2>
+
+<p class="transcript">
+
+{{ transcript }}
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Summary</h2>
+
+<p>
+
+{{ summary }}
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Sentiment</h2>
+
+<p>
+
+{{ sentiment.label }}
+
+</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

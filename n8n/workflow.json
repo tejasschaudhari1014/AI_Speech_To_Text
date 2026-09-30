@@ -1,0 +1,81 @@
+{
+  "name": "AI Speech To Text Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5000/process",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "audio",
+              "value": "={{ $binary.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2",
+      "name": "Process Speech",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { status: 'Speech processing completed', timestamp: new Date().toISOString() } }];"
+      },
+      "id": "3",
+      "name": "Create Status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Process Speech",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Speech": {
+      "main": [
+        [
+          {
+            "node": "Create Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}
